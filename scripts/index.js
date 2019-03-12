@@ -118,6 +118,31 @@ function sortByName(obj1, obj2){
     return 0;
 }
 
+function filterbyLetter(letter) {
+    console.log(letter);
+    if (letter.length === 1) {
+        const filtered = allCharactersArray.filter(function (character){
+            return character.name.startsWith(letter.toUpperCase());
+        });
+        console.log(`drawing for ${letter}`);
+        drawListOfCharacters(filtered);
+    } else {
+        console.log('drawing all')
+        drawListOfCharacters();
+    }
+}
+
+function attachClickToLetters() {
+    const letters = document.querySelectorAll('[data-index] a');
+    letters.forEach(function (letter) {
+        letter.addEventListener('click', function () {
+            filterbyLetter(letter.textContent);
+        });
+    });
+}
+
+
+
 function main() {
     let charactersInLocalStorage = loadCharacters();
     if (charactersInLocalStorage){
@@ -125,6 +150,7 @@ function main() {
             ...charactersInLocalStorage.sort(sortByName)
         ];
         drawListOfCharacters();
+        attachClickToLetters();
     } else {
         console.log("You got nothing.");
         console.log("Retrieving from the API");
