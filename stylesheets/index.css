@@ -36,7 +36,9 @@ body > * {
 }
 
 .listing {
-    width: 18%;
+    width: 33%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .detail {
